@@ -1,6 +1,7 @@
 import React from 'react';
-import MountainStore from '../stores/mountainStore';
-import MountainActions from '../actions/MountainActions';
+// import MountainStore from '../stores/mountainStore';
+// import MountainActions from '../actions/MountainActions';
+import firebase, { auth, provider } from '../firebase.js';
 
 class MountainCheckbox extends React.Component {
 
@@ -8,14 +9,11 @@ class MountainCheckbox extends React.Component {
     super(props);
   }
 
-
   handleChecked(event){
-    if (event.target.checked) {
-      MountainActions.checkMountain(this.props.id);
-    }
-    else {
-      MountainActions.uncheckMountain(this.props.id);
-    }
+    var userChecks = firebase.database().ref("userChecks/" + this.props.user.uid + "/");
+    userChecks.child(this.props.id).set({
+      checked: !this.props.check.checked
+    })
   }
 
   render() {
@@ -25,7 +23,9 @@ class MountainCheckbox extends React.Component {
           id={this.props.id}
           type="checkbox"
           onChange={this.handleChecked.bind(this)}
-          checked={this.props.checked}
+          checked={this.props.check ? this.props.check.checked : false}
+          disabled={this.props.user ? false : true}
+          // disabled= 'undefined' //{this.props.user ? 'disabled' : 'false'}
         />
         <label htmlFor={this.props.id}>{this.props.name}
         </label>

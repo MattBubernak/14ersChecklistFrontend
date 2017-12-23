@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events';
 import Dispatcher from '../dispatcher';
 import ActionTypes from '../constants';
-import MountainStore from '../stores/mountainStore';
+// import MountainStore from '../stores/mountainStore';
 import request from 'superagent';
 
 const CHANGE = 'USER_CHANGE';
@@ -37,15 +37,12 @@ class UserStore extends EventEmitter {
     console.log(user);
     console.log("-===============");
     this._userState = user
-    MountainStore.requestDataFromServer();
+    // MountainStore.requestDataFromServer();
     this.emit(CHANGE);
   }
 
   // Returns the current store's state.
   getUser() {
-    console.log('getUser===');
-    console.log(this._userState);
-    console.log('getUser=^^');
     return this._userState;
   }
 

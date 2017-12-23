@@ -10,8 +10,10 @@
     "start": "node_modules/.bin/webpack-dev-server --progress --inline --hot"
   },
   "dependencies": {
+    "firebase": "^4.8.0",
     "flux": "^3.1.2",
     "react": "^15.5.4",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^15.5.4",
     "superagent": "^3.8.1"
   },

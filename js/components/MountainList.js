@@ -1,5 +1,6 @@
 import React from 'react';
-import MountainStore from '../stores/mountainStore';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+// import MountainStore from '../stores/mountainStore';
 import MountainCheckbox from './MountainCheckbox';
 class MountainList extends React.Component {
 
@@ -17,9 +18,9 @@ class MountainList extends React.Component {
 	// 	this.setState({ mountains: MountainStore.getAllMountains() });
 	// }
 
-	// componentWillMount() {
-	// 	MountainStore.addChangeListener(this._onChange);
-	// }
+	componentWillMount() {
+		//MountainStore.addChangeListener(this._onChange);
+	}
 
 	// componentWillUnmount() {
 	// 	MountainStore.removeChangeListener(this._onChange);
@@ -27,14 +28,14 @@ class MountainList extends React.Component {
 
 	render() {
 		return (
-			<ul className="mountains-list">
-				{Object.values(this.props.mountains).map((mountainDetails) => {
-					return (<li key={mountainDetails.id}>
-										<MountainCheckbox id={mountainDetails.id} name={mountainDetails.name} checked={mountainDetails.checked}/>
-										{mountainDetails.elevation}
-									</li>);
-				})}
-			</ul>
+				<ul className="mountains-list">
+					{Object.keys(this.props.mountains).map((key) => {
+						return (<li key={key}>
+											<MountainCheckbox id={key} user={this.props.user} name={this.props.mountains[key].name} check={this.props.mountains[key].check}/>
+											{this.props.mountains[key].elevation}
+										</li>);
+					})}
+				</ul>
 		);
 	}
 }

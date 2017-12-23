@@ -1,12 +1,11 @@
 import React from 'react';
-import UserStore from '../stores/userStore';
 
 class User extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      user: UserStore.getUser()
+      user: {}
     };
 
     this._onChange = this._onChange.bind(this);
@@ -18,6 +17,7 @@ class User extends React.Component {
 
   componentWillMount() {
     UserStore.addChangeListener(this._onChange);
+    this.set
   }
 
   componentWillUnmount() {
@@ -29,7 +29,7 @@ class User extends React.Component {
     // Show a friendly message instead if there are no mountains.
 
     return (
-      <li> {this.state.user.id != undefined ? this.state.user.id : 'No User'}</li>
+      <li> {this.props.user.id != undefined ? this.props.user.id : 'No User'}</li>
     );
   }
 }

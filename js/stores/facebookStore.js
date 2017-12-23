@@ -2,6 +2,8 @@ import ActionTypes from '../constants';
 import {EventEmitter} from 'events';
 import Dispatcher from '../dispatcher';
 
+// import firebase, { auth, provider } from './firebase.js';
+
 const FACEBOOK_CHANGE_EVENT = 'FACEBOOK_CHANGE_EVENT';
 
 class FacebookStore extends EventEmitter {
